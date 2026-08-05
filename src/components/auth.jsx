@@ -8,9 +8,11 @@ export const Auth = () =>
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [isLogin, setIsLogin] = useState(true)
+    const [error, setError] = useState("")
 
     const handleAuth = async () =>
     {
+        setError("");
         try
         {
            if (isLogin)
@@ -24,9 +26,23 @@ export const Auth = () =>
                console.log("Account created successfully!")
            }
         }
-        catch (error)
+        catch (err)
         {
-            console.log("Authentication Error: ", error.message)
+            if (err.code === 'auth/weak-password')
+            {
+                setError("Password must be at least 6 characters long.");
+            }
+            else if (err.code === 'auth/email-already-in-use') {
+                setError("An account with this email already exists.");
+            }
+            else if (err.code === 'auth/invalid-credential' || err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password')
+            {
+                setError("Invalid email or password.");
+            }
+            else
+            {
+                setError("Something went wrong. Please try again.");
+            }
         }
     };
 
@@ -35,19 +51,27 @@ export const Auth = () =>
         try
         {
             await signInWithPopup(auth, googleProvider)
-            console.log("Account created successfully!")
+            console.log("Logged in with Google!")
         }
-        catch (error)
+        catch (err)
         {
-            console.log("Authentication Error: ", error.message)
+            console.error(err.message);
+            setError("Failed to sign in with Google.");
         }
+    };
+
+    const toggleMode = () =>
+    {
+        setIsLogin(!isLogin);
+        setError("");
     };
 
     return (
         <div className="auth_card">
-            <img className="website_logo" src={chatGramLogo} alt="ChatGram Logo"/>
+            <img className="website_logo" src={`${chatGramLogo}`} alt="ChatGram Logo"/>
             <h2>{isLogin ? "Welcome to ChatGram" : "Create an account"}</h2>
             <p>{isLogin ? "Sign in to continue" : "Register to join the community"}</p>
+            {error && <p className="error_message">{error}</p>}
 
             <div className="authentication_inputs">
                 <input
@@ -76,7 +100,7 @@ export const Auth = () =>
                 </button>
             </div>
 
-            <p className="auth_toggle_text"  onClick={() => setIsLogin(!isLogin)}>
+            <p className="auth_toggle_text" onClick={toggleMode}>
                 {isLogin ? "Don't have an account? Sign up" : "Already have an account? Log in"}
             </p>
         </div>
