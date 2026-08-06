@@ -63,8 +63,22 @@ export const Chat = () =>
 
             <div className="chat_window">
 
-                <div className="chat_placeholder">
-                    Select a chat to start messaging
+                <div className="chat_window_header">
+
+                    <div className="chat_header_info">
+                        <img src="https://i.pravatar.cc/150?u=david" alt="David Moore" className="chat_header_avatar"/>
+                        <div className="chat_header_text">
+                            <h3>David Moore</h3>
+                            <p>last seen 5 mins ago</p>
+                        </div>
+                    </div>
+
+                    <div className="chat_header_actions">
+                        <span className="action_icon">🔍</span>
+                        <span className="action_icon">📞</span>
+                        <span className="action_icon">⋮</span>
+                    </div>
+
                 </div>
 
             </div>
