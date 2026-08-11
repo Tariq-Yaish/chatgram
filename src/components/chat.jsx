@@ -64,7 +64,6 @@ export const Chat = () =>
             <div className="chat_window">
 
                 <div className="chat_window_header">
-
                     <div className="chat_header_info">
                         <img src="https://i.pravatar.cc/150?u=david" alt="David Moore" className="chat_header_avatar"/>
                         <div className="chat_header_text">
@@ -78,7 +77,31 @@ export const Chat = () =>
                         <span className="action_icon">📞</span>
                         <span className="action_icon">⋮</span>
                     </div>
+                </div>
 
+                <div className="chat_window_messages">
+                    <div className="message_date_badge">Today</div>
+
+                    <div className="message_bubble received">
+                        <p>OMG 😲 do you remember what you did last night at the work night out?</p>
+                        <span className="message_time">18:12</span>
+                    </div>
+
+                    <div className="message_bubble sent">
+                        <p>no haha</p>
+                        <span className="message_time">18:16 <span className="read_receipt">✓</span></span>
+                    </div>
+
+                    <div className="message_bubble sent">
+                        <p>i don't remember anything 😅</p>
+                        <span className="message_time">18:16 <span className="read_receipt">✓</span></span>
+                    </div>
+                </div>
+
+                <div className="chat_window_input_area">
+                    <span className="input_icon">😊</span>
+                    <input type="text" placeholder="Message" className="message_input_field" />
+                    <span className="input_icon send_button">➤</span>
                 </div>
 
             </div>
