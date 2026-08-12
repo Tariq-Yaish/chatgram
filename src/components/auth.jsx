@@ -1,7 +1,8 @@
-import { auth, googleProvider } from "../firebase_config/firebase";
+import { auth, googleProvider, database } from "../firebase_config/firebase";
 import { createUserWithEmailAndPassword, signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth'
 import { useState } from "react";
 import chatGramLogo from "../assets/Logo/android-chrome-192x192.png";
+import { doc, setDoc } from "firebase/firestore"
 
 export const Auth = () =>
 {
@@ -22,7 +23,20 @@ export const Auth = () =>
            }
            else
            {
-               await createUserWithEmailAndPassword(auth, email, password);
+               const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+               const user = userCredential.user;
+
+               /** @type {import("firebase/firestore").DocumentData} */
+               const userData = {
+                   uid: user.uid,
+                   email: user.email,
+                   displayName: user.email.split('@')[0],
+                   photoURL: "",
+                   isOnline: true,
+               };
+               
+               await setDoc(doc(database, "users", user.uid), userData);
+
                console.log("Account created successfully!")
            }
         }
@@ -50,7 +64,17 @@ export const Auth = () =>
     {
         try
         {
-            await signInWithPopup(auth, googleProvider)
+            const result = await signInWithPopup(auth, googleProvider);
+            const user = result.user;
+
+            await setDoc(doc(database, "users", user.uid), {
+                uid: user.uid,
+                email: user.email,
+                displayName: user.displayName,
+                photoURL: user.photoURL,
+                isOnline: true,
+            }, { merge: true });
+
             console.log("Logged in with Google!")
         }
         catch (err)
