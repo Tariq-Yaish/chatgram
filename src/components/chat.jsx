@@ -2,6 +2,9 @@ import { auth } from "../firebase_config/firebase";
 import { signOut } from "firebase/auth";
 import burgerIcon from '../assets/burger.svg'
 import searchIcon from '../assets/search.svg'
+import callIcon from '../assets/call.svg'
+import moreIcon from '../assets/more.svg'
+import sendIcon from '../assets/send.svg'
 
 export const Chat = () =>
 {
@@ -73,9 +76,9 @@ export const Chat = () =>
                     </div>
 
                     <div className="chat_header_actions">
-                        <span className="action_icon">🔍</span>
-                        <span className="action_icon">📞</span>
-                        <span className="action_icon">⋮</span>
+                        <img src={`${searchIcon}`} alt="Search" className="header_icon" />
+                        <img src={`${callIcon}`} alt="Call" className="header_icon" />
+                        <img src={`${moreIcon}`} alt="More" className="header_icon" />
                     </div>
                 </div>
 
@@ -101,9 +104,8 @@ export const Chat = () =>
                 <div className="chat_window_input_area">
                     <span className="input_icon">😊</span>
                     <input type="text" placeholder="Message" className="message_input_field" />
-                    <span className="input_icon send_button">➤</span>
+                    <img src={`${sendIcon}`} alt="Send" className="send_icon" />
                 </div>
-
             </div>
 
         </div>

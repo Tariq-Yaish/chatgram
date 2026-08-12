@@ -186,8 +186,8 @@ button:hover
 
 .burger_menu
 {
-    width: 24px;
-    height: 24px;
+    width: 38px;
+    height: 38px;
     cursor: pointer;
     user-select: none;
     opacity: 0.6;
@@ -210,8 +210,8 @@ button:hover
 
 .search_icon
 {
-    width: 16px;
-    height: 16px;
+    width: 28px;
+    height: 28px;
     margin-right: 8px;
     opacity: 0.5;
 }
@@ -412,7 +412,7 @@ button:hover
 {
     flex: 1;
     overflow-y: auto;
-    padding: 20px;
+    padding: 20px 12%;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -421,6 +421,7 @@ button:hover
 .message_date_badge
 {
     align-self: center;
+    margin-top: auto;
     background-color: #3D70B899;
     color: white;
     font-size: 12px;
@@ -434,7 +435,7 @@ button:hover
 {
     max-width: 65%;
     padding: 10px 14px;
-    border-radius: 12px;
+    border-radius: 18px;
     position: relative;
     display: inline-block;
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
@@ -457,19 +458,16 @@ button:hover
     margin-top: 4px;
 }
 
-/* Specific styling for received vs sent bubbles */
 .received
 {
     align-self: flex-start;
     background-color: white;
-    border-bottom-left-radius: 2px;
 }
 
 .sent
 {
     align-self: flex-end;
     background-color: #78E378;
-    border-bottom-right-radius: 2px;
 }
 
 .sent .message_time
@@ -491,6 +489,10 @@ button:hover
     gap: 16px;
     padding: 16px 20px;
     background-color: white;
+
+    border-radius: 24px;
+    margin: 0 12% 24px 12%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .message_input_field
@@ -512,4 +514,32 @@ button:hover
 .send_button
 {
     color: #5C88C7;
+}
+
+.header_icon
+{
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.header_icon:hover
+{
+    opacity: 0.9;
+}
+
+.send_icon
+{
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.send_icon:hover
+{
+    opacity: 1;
 }
