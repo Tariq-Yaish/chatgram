@@ -2,7 +2,7 @@ import { auth, googleProvider, database } from "../firebase_config/firebase";
 import { createUserWithEmailAndPassword, signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth'
 import { useState } from "react";
 import chatGramLogo from "../assets/Logo/android-chrome-192x192.png";
-import { doc, setDoc } from "firebase/firestore"
+import { doc, setDoc, updateDoc } from "firebase/firestore"
 
 export const Auth = () =>
 {
@@ -18,7 +18,12 @@ export const Auth = () =>
         {
            if (isLogin)
            {
-               await signInWithEmailAndPassword(auth, email, password);
+               const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+               await updateDoc(doc(database, "users", userCredential.user.uid), {
+                   isOnline: true
+               });
+
                console.log("Successfully logged in!")
            }
            else

@@ -1,38 +1,44 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { auth } from './firebase_config/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { Auth } from './components/auth.jsx';
 import { Chat } from './components/chat.jsx';
+import { useUserStore } from './store/userStore.js';
 import './App.css';
 
 function App()
 {
-    const [user, setUser] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const { currentUser, isLoading, fetchUserInfo } = useUserStore();
 
     useEffect(() =>
     {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) =>
+        const unsubscribe = onAuthStateChanged(auth, (user) =>
         {
-            setUser(currentUser);
-            setIsLoading(false);
+            if (user)
+            {
+                fetchUserInfo(user.uid).catch(console.error);
+            }
+            else
+            {
+                fetchUserInfo(null).catch(console.error);
+            }
         });
 
         return () => unsubscribe();
-    }, []);
+    }, [fetchUserInfo]);
 
     if (isLoading)
     {
         return (
             <div className="App">
-                <p>Loading</p>
+                <p>Loading...</p>
             </div>
         );
     }
 
     return (
         <div className="App">
-            {user ? <Chat /> : <Auth />}
+            {currentUser ? <Chat /> : <Auth />}
         </div>
     );
 }

@@ -456,6 +456,9 @@ button:hover
     float: right;
     margin-left: 12px;
     margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .received
@@ -477,8 +480,8 @@ button:hover
 
 .read_receipt
 {
-    margin-left: 4px;
-    font-weight: bold;
+    width: 14px;
+    height: 14px;
 }
 
 
@@ -493,6 +496,19 @@ button:hover
     border-radius: 24px;
     margin: 0 12% 24px 12%;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+
+    position: relative;
+}
+
+.emoji_picker_wrapper {
+    position: absolute;
+    bottom: 70px;
+    left: 20px;
+    z-index: 50;
+}
+
+.clickable_icon {
+    cursor: pointer;
 }
 
 .message_input_field
@@ -542,4 +558,29 @@ button:hover
 .send_icon:hover
 {
     opacity: 1;
+}
+
+.search_result_item
+{
+    border-bottom: 1px solid #f0f0f0;
+    background-color: #f9f9f9;
+}
+
+.search_error_message
+{
+    padding: 10px;
+    text-align: center;
+    color: #ff6b6b;
+}
+
+.empty_chats_message
+{
+    text-align: center;
+    color: #888;
+    margin-top: 20px;
+}
+
+.fallback_avatar
+{
+    background-color: #79A3D9;
 }
