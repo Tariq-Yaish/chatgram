@@ -164,10 +164,12 @@ button:hover
     background-image: url('./assets/doodles.png');
     background-size: 700px;
     background-repeat: repeat;
+    position: relative;
 }
 
 .chat_placeholder
 {
+    margin: auto;
     background-color: rgba(0, 0, 0, 0.2);
     color: white;
     padding: 8px 16px;
@@ -439,6 +441,7 @@ button:hover
     position: relative;
     display: inline-block;
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    animation: messageSlideUp 0.3s ease-out forwards;
 }
 
 .message_bubble p
@@ -505,6 +508,9 @@ button:hover
     bottom: 70px;
     left: 20px;
     z-index: 50;
+
+    transform-origin: bottom left;
+    animation: popInScale 0.2s ease-out forwards;
 }
 
 .clickable_icon {
@@ -583,4 +589,254 @@ button:hover
 .fallback_avatar
 {
     background-color: #79A3D9;
+}
+
+.image_modal_overlay
+{
+    position: absolute;
+    bottom: 100px;
+    right: 12%;
+    z-index: 100;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.image_modal
+{
+    background: white;
+    width: 320px;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    animation: popInScale 0.2s ease-out forwards;
+}
+
+.image_modal_header
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 4px;
+}
+
+.image_modal_title_group h3
+{
+    font-size: 16px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.image_modal_title_group
+{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.close_modal
+{
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    transition: opacity 0.2s;
+}
+
+.close_modal:hover
+{
+    opacity: 0.7;
+}
+
+.message_attachment
+{
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 8px;
+}
+
+.read_receipts_container
+{
+    display: flex;
+    margin-left: 4px;
+}
+
+.read_receipt_second_tick
+{
+    margin-left: -8px;
+}
+
+.status_online
+{
+    color: #4ade80;
+}
+
+.status_offline
+{
+    color: #94a3b8;
+}
+
+.send_modal_button
+{
+    background-color: #4ade80;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+}
+
+.image_modal_preview_container
+{
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.image_modal_preview
+{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image_modal_caption
+{
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+}
+
+.send_modal_button:disabled
+{
+    background-color: #a7f3d0;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+
+.burger_menu_container
+{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.burger_dropdown
+{
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background: white;
+    width: 180px;
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 50;
+    transform-origin: top left;
+    animation: slideDownFade 0.2s ease-out forwards;
+}
+
+
+.dropdown_logout_button
+{
+    width: 100%;
+    padding: 10px 12px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+    background-color: transparent;
+    color: #d9534f;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    transition: background-color 0.2s;
+}
+
+.dropdown_logout_button:hover
+{
+    background-color: #fce8e8;
+}
+
+.dropdown_menu_button
+{
+    width: 100%;
+    padding: 10px 12px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+    background-color: transparent;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+    transition: background-color 0.2s;
+}
+
+.dropdown_menu_button:hover
+{
+    background-color: #f4f5f7;
+}
+
+@keyframes fadeIn
+{
+    from
+    {
+        opacity: 0;
+    }
+    to
+    {
+        opacity: 1;
+    }
+}
+
+@keyframes popInScale
+{
+    from
+    {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to
+    {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideDownFade
+{
+    from
+    {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to
+    {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes messageSlideUp
+{
+    from
+    {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to
+    {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
